@@ -3,22 +3,42 @@
   <div class="input-group">
     <p>
       <label for="initialInvestInput">Inverción inicial</label>
-      <input id="initialInvestInput" type="number" />
+      <input
+        id="initialInvestInput"
+        type="number"
+        name="initialInvestment"
+        [(ngModel)]="initialInvestment"
+      />
     </p>
     <p>
       <label for="anualInvestInput">Inverción Anual</label>
-      <input id="anualInvestInput" type="number" />
+      <input
+        id="anualInvestInput"
+        type="number"
+        name="anualInvestment"
+        [(ngModel)]="anualInvestment"
+      />
     </p>
   </div>
   <!--segundo grupo de inputs-->
   <div class="input-group">
     <p>
       <label for="investReturnInput">Retorno esperado</label>
-      <input id="investReturnInput" type="number" />
+      <input
+        id="investReturnInput"
+        type="number"
+        name="expectedReturn"
+        [(ngModel)]="expectedReturn"
+      />
     </p>
     <p>
       <label for="durationInput">Duración</label>
-      <input id="durationInput" type="number" />
+      <input
+        id="durationInput"
+        name="duration"
+        type="number"
+        [(ngModel)]="duration"
+      />
     </p>
   </div>
   <p>

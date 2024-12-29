@@ -9,8 +9,19 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user-input.component.css',
 })
 export class UserInputComponent {
+  //Lo puse como string porque de todos modos siempre que viene de un Input el dato es un string
+  initialInvestment = '0';
+  anualInvestment = '0';
+  expectedReturn = '5';
+  duration = '10';
+
   handleinvestdata() {
     console.log('Investment data submitted');
-    // Perform the calculations here...
+    console.log(
+      this.initialInvestment,
+      this.anualInvestment,
+      this.expectedReturn,
+      this.duration
+    );
   }
 }
