@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { InvestDataInterface } from '../../types';
 
 @Component({
   selector: 'app-user-input',
@@ -9,6 +10,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user-input.component.css',
 })
 export class UserInputComponent {
+  //custom event
+  @Output() calculate = new EventEmitter<InvestDataInterface>();
   //Lo puse como string porque de todos modos siempre que viene de un Input el dato es un string
   initialInvestment = '0';
   anualInvestment = '0';
@@ -16,12 +19,11 @@ export class UserInputComponent {
   duration = '10';
 
   handleinvestdata() {
-    console.log('Investment data submitted');
-    console.log(
-      this.initialInvestment,
-      this.anualInvestment,
-      this.expectedReturn,
-      this.duration
-    );
+    this.calculate.emit({
+      initialInvestment: +this.initialInvestment,
+      duration: +this.duration,
+      expectedReturn: +this.expectedReturn,
+      annualInvestment: +this.anualInvestment,
+    });
   }
 }
