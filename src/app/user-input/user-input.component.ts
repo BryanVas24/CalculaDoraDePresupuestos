@@ -1,6 +1,6 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { InvestDataInterface } from '../../types';
+import { InvestmentService } from '../investment.service';
 
 @Component({
   selector: 'app-user-input',
@@ -11,20 +11,21 @@ import { InvestDataInterface } from '../../types';
 })
 export class UserInputComponent {
   //custom event
-  calculate = output<InvestDataInterface>();
   //Lo puse como string porque de todos modos siempre que viene de un Input el dato es un string
   initialInvestment = signal('0');
   anualInvestment = signal('0');
   expectedReturn = signal('5');
   duration = signal('10');
-
+  //Para "instanciar la calse"
+  constructor(private investmentService: InvestmentService) {}
   handleinvestdata() {
-    this.calculate.emit({
+    this.investmentService.calculateInvestmentResults({
       initialInvestment: +this.initialInvestment(),
       duration: +this.duration(),
       expectedReturn: +this.expectedReturn(),
       annualInvestment: +this.anualInvestment(),
     });
+    //Para reiniciar el form
     this.initialInvestment.set('0');
     this.anualInvestment.set('0');
     this.expectedReturn.set('5');
