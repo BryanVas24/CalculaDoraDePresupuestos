@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InvestDataInterface } from '../../types';
 
@@ -11,19 +11,23 @@ import { InvestDataInterface } from '../../types';
 })
 export class UserInputComponent {
   //custom event
-  @Output() calculate = new EventEmitter<InvestDataInterface>();
+  calculate = output<InvestDataInterface>();
   //Lo puse como string porque de todos modos siempre que viene de un Input el dato es un string
-  initialInvestment = '0';
-  anualInvestment = '0';
-  expectedReturn = '5';
-  duration = '10';
+  initialInvestment = signal('0');
+  anualInvestment = signal('0');
+  expectedReturn = signal('5');
+  duration = signal('10');
 
   handleinvestdata() {
     this.calculate.emit({
-      initialInvestment: +this.initialInvestment,
-      duration: +this.duration,
-      expectedReturn: +this.expectedReturn,
-      annualInvestment: +this.anualInvestment,
+      initialInvestment: +this.initialInvestment(),
+      duration: +this.duration(),
+      expectedReturn: +this.expectedReturn(),
+      annualInvestment: +this.anualInvestment(),
     });
+    this.initialInvestment.set('0');
+    this.anualInvestment.set('0');
+    this.expectedReturn.set('5');
+    this.duration.set('10');
   }
 }
